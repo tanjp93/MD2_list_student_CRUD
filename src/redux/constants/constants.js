@@ -1,0 +1,7 @@
+export const STD_GET="STD_GET"
+export const STD_POST="STD_POST"
+export const STD_DEL="STD_DEL"
+export const STD_PATCH="STD_PATCH"
+export const STD_SUCCESS="STD_SUCCESS"
+export const STD_ADD="STD_ADD"
+export const STD_SEARCH="STD_SEARCH"
