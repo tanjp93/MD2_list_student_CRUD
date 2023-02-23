@@ -4,24 +4,7 @@ import { useDispatch } from 'react-redux';
 import { act_add_std, act_check_std, act_del_std, act_edit_std } from '../redux/action';
 
 const Student = () => {
-  const [studentLists, setStudentLists] = useState([])
   const studentList = useSelector(state => state.students)
-  const searchStd = useSelector(state => state.searchStd)
-
-
-  useEffect (()=>{
-    setStudentLists(studentList)
-  },[studentList])
-
-  useEffect(()=>{
-    let newArr;
-    if (searchStd) {
-      newArr=studentList.filter(val=>val.studentName.includes(searchStd))
-    } else {
-      newArr=studentList
-    }
-    setStudentLists(newArr)
-  },[searchStd]);
 
   const dispatch=useDispatch()
   const handleEdit=(std)=>{
@@ -38,7 +21,7 @@ const Student = () => {
     dispatch(act_del_std(std))
   }
 
-  const elementStd = studentLists?.map((std, index) => (
+  const elementStd = studentList?.map((std, index) => (
     <tr key={std.id}>
       <td>{index + 1}</td>
       <td>{std.msv}</td>

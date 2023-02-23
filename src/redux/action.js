@@ -51,12 +51,8 @@ export const act_del_std = (payload) => {
 }
 
 
-
-
-
-
-
 export const act_search_std = payload => {
+    console.log(payload);
     return {
         type: stdTypes.STD_SEARCH,
         payload

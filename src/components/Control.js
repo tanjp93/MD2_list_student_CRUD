@@ -9,6 +9,7 @@ const Control = () => {
         inputSearch: '',
         sort: ''
     })
+    console.log(control);
 
     const [isToggle,setIsToggle]=useState(false)
     const handleToggle = () => {
@@ -54,10 +55,11 @@ const Control = () => {
                     <div className="col-3 d-flex align-items-center">
                         <select name='sort'
                             value={control.sort} className="form-control" onChange={handleControl}>
-                            <option value="">Sắp xếp theo tên tăng dần (ASC)</option>
-                            <option value="">Sắp xếp theo tên giảm dần (DESC)</option>         
-                            <option value="">Sắp xếp theo tuổi tăng dần (ASC)</option>
-                            <option value="">Sắp xếp theo tuổi giảm dần (DESC)</option>
+                            <option value="">Sắp xếp</option>
+                            <option value="studentName-asc">Sắp xếp theo tên tăng dần (NameASC)</option>
+                            <option value="studentName-desc">Sắp xếp theo tên giảm dần (NameDESC)</option>         
+                            <option value="age-asc">Sắp xếp theo tuổi tăng dần (AgeASC)</option>
+                            <option value="age-desc">Sắp xếp theo tuổi giảm dần (AgeDESC)</option>
                         </select>
                     </div>
                 </div>

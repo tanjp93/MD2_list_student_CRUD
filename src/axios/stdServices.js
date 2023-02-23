@@ -16,4 +16,8 @@ export const STD_PATCH_SERVICE=async(updateStd)=>{
 export const STD_DEL_SERVICE=async(delStd)=>{
     console.log(delStd.id);
     return await instance.delete(`students/${delStd.id}`)
-}
+} 
+export const STD_SEARCH_SERVICE=async(search)=>{
+    let listSearch= await instance.get(`students?studentName_like=${search}`)
+    return listSearch.data  
+} 
