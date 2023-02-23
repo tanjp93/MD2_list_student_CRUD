@@ -21,3 +21,8 @@ export const STD_SEARCH_SERVICE=async(search)=>{
     let listSearch= await instance.get(`students?studentName_like=${search}`)
     return listSearch.data  
 } 
+export const STD_SORT_SERVICE=async(sort)=>{
+    console.log(sort);
+    let listSearch= await instance.get(`students?_sort=${sort[0]}&_order=${sort[1]}`)
+    return listSearch.data  
+} 

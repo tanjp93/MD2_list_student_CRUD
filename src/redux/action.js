@@ -67,3 +67,13 @@ export const act_ToggleByAdd=(data)=>{
         payload:data
     } 
 }
+
+
+
+export const act_sort_std =(sortInfo)=>{
+
+    return {
+        type: stdTypes.STD_SORT,
+        payload:sortInfo
+    } 
+}

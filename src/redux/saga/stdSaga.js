@@ -1,7 +1,7 @@
 import { call, put } from 'redux-saga/effects'
 import * as stdService from '../../axios/stdServices'
 import { act_get_success_std } from '../action'
-import { STD_SEARCH } from '../constants/constants'
+import { STD_SEARCH, STD_SORT } from '../constants/constants'
 
 export const STD_SAGA_ADD = function* (action) {
     try {
@@ -32,14 +32,6 @@ export const STD_SAGA_DEL = function* (action) {
     }
 }
 
-// export const STD_SAGA_SEARCH = function* (action) {
-//     try {
-//         yield call(stdService.STD_SEARCH_SERVICE, action.payload)
-//         yield STD_SAGA_GET()
-//     } catch (error) {
-//         console.log("STD_SAGA_SEARCH Err =>>", error);
-//     }
-// }
 
 
 export const STD_SAGA_GET = function* (action) {
@@ -47,15 +39,28 @@ export const STD_SAGA_GET = function* (action) {
     switch (action.type) {
         case STD_SEARCH:
             try {
-                 listStd =yield call(stdService.STD_SEARCH_SERVICE, action.payload)
+                listStd = yield call(stdService.STD_SEARCH_SERVICE, action.payload)
                 yield put(act_get_success_std(listStd))
             } catch (error) {
                 console.log("STD_SAGA_SEARCH Err =>>", error);
             }
             break;
+
+        case STD_SORT:
+            try {
+                try {
+                    listStd = yield call(stdService.STD_SORT_SERVICE, action.payload)
+                    yield put(act_get_success_std(listStd))
+                } catch (error) {
+                    console.log("STD_SORT_SERVICE Err =>>", error);
+                }
+                break;
+            } catch (error) {
+                console.log("STD_SORT_SERVICE Err =>>", error);
+            }
         default:
             try {
-                 listStd = yield call(stdService.STD_GET_SERVICE)
+                listStd = yield call(stdService.STD_GET_SERVICE)
                 yield put(act_get_success_std(listStd))
             } catch (error) {
                 console.log("STD_SAGA_GET Err =>>", error);
