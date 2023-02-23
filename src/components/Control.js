@@ -1,17 +1,18 @@
 import React from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { act_search_std } from '../redux/action';
+import { act_ToggleByAdd, act_search_std } from '../redux/action';
 
 
-const Control = (props) => {
+const Control = () => {
     const [control, setControl] = useState({
         inputSearch: '',
         sort: ''
     })
-  
+
+    const [isToggle,setIsToggle]=useState(false)
     const handleToggle = () => {
-        props.setIsToggle(!props.isToggle)
+        dispatch(act_ToggleByAdd(isToggle))
     }
     //handle Change
     const handleControl = (e) => {
@@ -53,10 +54,10 @@ const Control = (props) => {
                     <div className="col-3 d-flex align-items-center">
                         <select name='sort'
                             value={control.sort} className="form-control" onChange={handleControl}>
-                            <option value="">Sắp xếp</option>
-                            <option value="">ABC def</option>
-                            <option value="">ABC def</option>
-                            <option value="">ABC def</option>
+                            <option value="">Sắp xếp theo tên tăng dần (ASC)</option>
+                            <option value="">Sắp xếp theo tên giảm dần (DESC)</option>         
+                            <option value="">Sắp xếp theo tuổi tăng dần (ASC)</option>
+                            <option value="">Sắp xếp theo tuổi giảm dần (DESC)</option>
                         </select>
                     </div>
                 </div>

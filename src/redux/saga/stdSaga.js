@@ -18,3 +18,24 @@ export const STD_SAGA_ADD=function*(action){
         console.log("STD_SAGA_GET Err =>>",error);
     }
 }
+
+export const STD_SAGA_UPDATE=function*(action){
+
+    try {
+        console.log(action.payload);
+        yield call (stdService.STD_PATCH_SERVICE,action.payload)
+        yield STD_SAGA_GET()
+    } catch (error) {
+        console.log("STD_SAGA_GET Err =>>",error);
+    }
+}
+
+export const STD_SAGA_DEL=function*(action){
+    try {
+    
+        yield call (stdService.STD_DEL_SERVICE,action.payload)
+        yield STD_SAGA_GET()
+    } catch (error) {
+        console.log("STD_DEL_SERVICE Err =>>",error);
+    }
+}

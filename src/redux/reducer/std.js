@@ -1,4 +1,4 @@
-import { STD_SEARCH, STD_SUCCESS } from "../constants/constants";
+import { STD_SUCCESS } from "../constants/constants";
 
 export const students = (state = [], action) => {
     switch (action.type) {

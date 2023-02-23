@@ -1,36 +1,47 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-
+import { useDispatch } from 'react-redux';
+import { act_add_std, act_check_std, act_del_std, act_edit_std } from '../redux/action';
 
 const Student = () => {
   const [studentLists, setStudentLists] = useState([])
   const studentList = useSelector(state => state.students)
   const searchStd = useSelector(state => state.searchStd)
 
-  useEffect(() => {
+
+  useEffect (()=>{
+    setStudentLists(studentList)
+  },[studentList])
+
+  useEffect(()=>{
     let newArr;
     if (searchStd) {
-      newArr = studentList.filter((val) => val.studentName.includes(searchStd)
-      )
+      newArr=studentList.filter(val=>val.studentName.includes(searchStd))
     } else {
-      newArr = studentList
+      newArr=studentList
     }
-
     setStudentLists(newArr)
+  },[searchStd]);
 
-  }, [searchStd])
-
-  useEffect(() => {
-    setStudentLists(studentList)
-  }, [studentList])
-
-
-
+  const dispatch=useDispatch()
+  const handleEdit=(std)=>{
+    dispatch(act_edit_std(std))
+    dispatch(act_check_std(null))
+  } 
+ 
+  const handleCheck=(std)=>{
+    dispatch(act_check_std(std))
+    dispatch(act_edit_std(null))
+  }
+ 
+  const handleDelete=(std)=>{
+    dispatch(act_del_std(std))
+  }
 
   const elementStd = studentLists?.map((std, index) => (
-    <tr key={std.studentId}>
-      <td>{index = 1}</td>
-      <td>{std.studentId}</td>
+    <tr key={std.id}>
+      <td>{index + 1}</td>
+      <td>{std.msv}</td>
       <td>{std.studentName}</td>
       <td>{std.age}</td>
       <td>{std.gender ? "Nam" : "Nu"}</td>
@@ -39,18 +50,23 @@ const Student = () => {
           <button
             type="button"
             className="btn btn-danger btn-icon-text"
+            onClick={()=>handleCheck(std)}
           >
+
+
             Xem
           </button>
           <button
             type="button"
             className="btn btn-warning btn-icon-text"
+            onClick={()=>handleEdit(std)}
           >
             Sửa
           </button>
           <button
             type="button"
             className="btn btn-success btn-icon-text"
+            onClick={()=>handleDelete(std)}
           >
             Xóa
           </button>
